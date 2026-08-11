@@ -137,6 +137,29 @@ Anything new should go through `fotos.js` or be resized to ≤1800 px first.
 
 ---
 
+## Planned: hand the site over to the client
+
+Decided, not yet done. Today the Netlify account, the GitHub repo and the form
+notifications belong to the developer (`vaiva0223@gmail.com`), while the privacy
+policy and Impressum name **MANTAS Bauleistungen** as the responsible party.
+That mismatch is harmless while this is a viewing mockup, but must be resolved
+before real enquiries arrive. The agreed direction is that **the client becomes
+the controller**.
+
+When that happens:
+
+1. **Form notifications** — currently an email hook to `vaiva0223@gmail.com`
+   (Netlify → Forms → Notifications). Point it at the client's address.
+2. **Netlify account** — ideally the client opens their own and the site is
+   transferred, so Netlify's DPA runs between Netlify and the client. If the
+   developer keeps hosting it instead, the developer is a *processor* for MANTAS
+   and a separate AVV between developer and client is required — Netlify then
+   being a sub-processor. Netlify's own DPA needs no signature either way
+   (see `legal/netlify-dpa-2026-06-09.pdf`).
+3. **Privacy policy** — already written with MANTAS as controller, so it becomes
+   correct on its own. Only the two remaining placeholders need filling.
+4. **Domain** — `mantasbau.de` still has to be pointed at the site.
+
 ## Known gaps in the current build
 
 - **Photography is placeholder stock and reads wrong.** The hero is a North
