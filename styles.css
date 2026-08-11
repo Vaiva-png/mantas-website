@@ -129,6 +129,17 @@ h1, h2, h3 { font-weight: 600; margin: 0; }
 
 .text-link { font-size: 14px; font-weight: 600; }
 
+/* ---------- Eyebrow labels ----------------------------------------------- */
+
+.eyebrow {
+  font-size: 12.5px; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--orange);
+  margin: 0 0 14px;
+}
+.eyebrow--on-dark { color: var(--gold); }
+.eyebrow--center  { text-align: center; }
+
 /* ---------- Utility bar -------------------------------------------------- */
 
 .topbar {
@@ -262,17 +273,26 @@ h1, h2, h3 { font-weight: 600; margin: 0; }
   html { scroll-behavior: auto; }
 }
 
-/* ---------- Highlight cards --------------------------------------------- */
+/* ---------- Warum MANTAS ------------------------------------------------- */
 
-.cards {
-  position: relative; z-index: 6;
-  margin-top: -140px;
-  padding-inline: var(--pad);
+.why {
+  padding: 90px var(--pad);
+  background: var(--ink);
 }
-.cards__inner {
-  max-width: var(--maxw); margin-inline: auto;
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+.why__inner { max-width: var(--maxw); margin-inline: auto; }
+.why h2 {
+  color: #fff;
+  font-size: clamp(28px, 3.4vw, 38px);
+  text-align: center;
+  margin: 0 auto 48px;
+  max-width: 760px;
+  text-wrap: balance;
 }
+.why__grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+}
+.why .card p { max-width: 100%; margin-bottom: 0; }
+
 .card {
   position: relative; overflow: hidden;
   min-height: 220px; padding: 40px 34px;
@@ -629,8 +649,9 @@ a.contact__value:hover { color: var(--orange); }
   .hero__frame { max-width: 100%; padding: 30px 26px; }
   .hotspot { display: none; }          /* clip off-canvas on narrow screens */
 
-  .cards { margin-top: -60px; }
-  .cards__inner { grid-template-columns: 1fr; gap: 18px; }
+  .why { padding: 70px var(--pad); }
+  .why h2 { margin-bottom: 34px; }
+  .why__grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
   .card { min-height: 0; padding: 32px 28px; }
   .card p { max-width: 100%; }
   .card__glyph { width: 118px; height: 118px; }
@@ -670,7 +691,7 @@ a.contact__value:hover { color: var(--orange); }
   .hero__frame > .corner::before, .hero__frame > .corner::after { width: 20px; height: 20px; }
   .hero .btn--primary { width: 100%; justify-content: center; }
 
-  .cards { margin-top: -44px; }
+  .why__grid { grid-template-columns: 1fr; }
 
   .services__grid { grid-template-columns: 1fr; }
   .tile { min-height: 240px; }
@@ -692,6 +713,7 @@ a.contact__value:hover { color: var(--orange); }
   .footer__nav a,
   .footer__contact a,
   .footer__impressum a,
+  .footer__legal a,
   .consent a {
     display: inline-block;
     padding-block: 10px;
