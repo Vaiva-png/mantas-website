@@ -25,3 +25,6 @@ neue-fotos/*
 
 # Netlify CLI local state
 .netlify/
+
+# Deploy output
+dist/
