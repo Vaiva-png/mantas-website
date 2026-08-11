@@ -266,8 +266,12 @@
       </ul>
     </div>
 
-    <!-- Handler: kontakt.php (PHP-Webspace) — bei Netlify stattdessen data-netlify="true" setzen -->
-    <form class="contact__form" action="kontakt.php" method="post">
+    <!-- Netlify Forms. Für klassisches PHP-Webspace stattdessen:
+         <form class="contact__form" action="kontakt.php" method="post">
+         und die drei netlify-Zeilen entfernen. -->
+    <form class="contact__form" name="kontakt" method="post"
+          data-netlify="true" netlify-honeypot="website" action="/danke.html">
+      <input type="hidden" name="form-name" value="kontakt">
       <!-- Spam-Falle: für Menschen unsichtbar, Bots füllen sie aus -->
       <p class="honeypot" aria-hidden="true">
         <label>Bitte dieses Feld frei lassen

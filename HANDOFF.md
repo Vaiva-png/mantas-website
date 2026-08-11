@@ -148,8 +148,12 @@ Anything new should go through `fotos.js` or be resized to ≤1800 px first.
   that exact path to fix — no code change needed.
 - **The gallery leans heavily on before/after split images** — 4 of 6. Reads busy.
   Suggest max 2 when real photos arrive.
-- **Form has no backend until deployed.** `kontakt.php` is written and ready but
-  needs a PHP host and its three config values set. Not testable locally without PHP.
+- **Form now uses Netlify Forms.** The site is deployed to Netlify, which does not
+  run PHP, so the form posts to Netlify and redirects to `danke.html`. Submissions
+  appear in the Netlify dashboard under *Forms*; set up an email notification there.
+  `kontakt.php` is kept in the repo (and excluded from `dist/`) so the project can
+  still move to classic German PHP webspace — the swap is two lines, documented
+  inline in `index.html`.
 - **`fotos.js` is macOS-only** — it shells out to `sips`. Needs a different
   resizer (sharp, ImageMagick) if the project moves to Linux/Windows.
 - **Partner logos are builders' merchants**, not partners — labelled
