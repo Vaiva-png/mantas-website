@@ -12,21 +12,24 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-# --- .env laden --------------------------------------------------------------
-if [ ! -f .env ]; then
-  echo "Fehler: .env fehlt.  Anlegen mit:  cp .env.example .env"
-  exit 1
+# --- Anmeldung ---------------------------------------------------------------
+# Zwei Wege, beide funktionieren:
+#   1. Einmalig  npx netlify-cli login  ausführen — der einfachste Weg.
+#      Die CLI merkt sich die Anmeldung selbst, .env wird gar nicht gebraucht.
+#   2. Ein Token in .env hinterlegen — nötig für automatische Deploys
+#      (z. B. GitHub Actions) oder wenn kein Browser zur Verfügung steht.
+if [ -f .env ]; then
+  set -a
+  # shellcheck disable=SC1091
+  source .env
+  set +a
 fi
 
-set -a
-# shellcheck disable=SC1091
-source .env
-set +a
-
-if [ -z "${NETLIFY_AUTH_TOKEN:-}" ]; then
-  echo "Fehler: NETLIFY_AUTH_TOKEN ist in .env nicht gesetzt."
-  echo "Token erzeugen: https://app.netlify.com/user/applications#personal-access-tokens"
-  exit 1
+if [ -n "${NETLIFY_AUTH_TOKEN:-}" ]; then
+  echo "  → Anmeldung über Token aus .env"
+else
+  echo "  → Kein Token in .env — es wird die gespeicherte Netlify-Anmeldung benutzt."
+  echo "     Falls der Deploy scheitert, einmalig ausführen:  npx netlify-cli login"
 fi
 
 # --- dist/ zusammenstellen ---------------------------------------------------
