@@ -23,8 +23,10 @@ const GALERIE  = path.join(ROOT, 'assets', 'gallery');
 const JSON_DAT = path.join(GALERIE, 'galerie.json');
 const SEITE    = path.join(ROOT, 'index.html');
 
-const MAX_BREITE = 900;   // Pixel — reicht für die Galerie-Kacheln
+const MAX_BREITE      = 900;    // Kachel in der Galerie
+const MAX_BREITE_GROSS = 1600;  // Großansicht beim Anklicken (Lightbox)
 const QUALITAET  = 66;    // 0–100
+const QUALITAET_GROSS = 72;
 
 const START = '<!-- GALERIE:START';
 const ENDE  = '<!-- GALERIE:ENDE -->';
@@ -60,12 +62,23 @@ neue.forEach(function (datei) {
 
   const vorher = fs.statSync(von).size;
 
+  const zielGross = ziel.replace('.jpg', '-full.jpg');
+  const nachGross = path.join(GALERIE, zielGross);
+
   try {
     execFileSync('sips', [
       '-s', 'format', 'jpeg',
       '-s', 'formatOptions', String(QUALITAET),
       '-Z', String(MAX_BREITE),
       von, '--out', nach,
+    ], { stdio: 'ignore' });
+
+    // Großansicht für die Lightbox
+    execFileSync('sips', [
+      '-s', 'format', 'jpeg',
+      '-s', 'formatOptions', String(QUALITAET_GROSS),
+      '-Z', String(MAX_BREITE_GROSS),
+      von, '--out', nachGross,
     ], { stdio: 'ignore' });
   } catch (e) {
     console.error('  ✗  ' + datei + ' konnte nicht verarbeitet werden');
@@ -95,11 +108,16 @@ if (a === -1 || b === -1) {
 }
 
 const einzug = '        ';
-const bilder = liste.map(function (e) {
-  const alt = e.alt && e.alt.trim() !== ''
+const bilder = liste.map(function (e, i) {
+  const alt = (e.alt && e.alt.trim() !== ''
     ? e.alt
-    : 'Projektfoto von MANTAS Bauleistungen';
-  return einzug + '<img src="assets/gallery/' + e.datei + '" alt="' + alt.replace(/"/g, '&quot;') + '" loading="lazy">';
+    : 'Projektfoto von MANTAS Bauleistungen').replace(/"/g, '&quot;');
+  const voll = e.datei.replace('.jpg', '-full.jpg');
+  return einzug + '<button type="button" class="gallery__item" data-full="assets/gallery/' + voll +
+         '" data-alt="' + alt + '" aria-label="Bild ' + (i + 1) + ' von ' + liste.length +
+         ' vergrößern: ' + alt + '">\n' +
+         einzug + '  <img src="assets/gallery/' + e.datei + '" alt="' + alt + '" loading="lazy">\n' +
+         einzug + '</button>';
 }).join('\n');
 
 const kopf = START + ' — wird von "node fotos.js" erzeugt, nicht von Hand bearbeiten -->';

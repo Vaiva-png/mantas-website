@@ -187,44 +187,6 @@
     </div>
   </section>
 
-  <!-- ===== Warum MANTAS ===== -->
-  <section class="why" id="warum">
-    <div class="why__inner">
-      <p class="eyebrow eyebrow--on-dark eyebrow--center">Warum MANTAS</p>
-      <h2>Handwerk, auf das Sie sich verlassen können.</h2>
-
-      <div class="why__grid">
-        <article class="card">
-          <svg class="card__glyph" aria-hidden="true"><use href="#mHouse"/></svg>
-          <span class="card__bullet"></span>
-          <h3>Persönlicher Ansprechpartner</h3>
-          <p>Bei uns wissen Sie, mit wem Sie sprechen. Persönliche Betreuung gehört für uns von Anfang bis Ende dazu.</p>
-        </article>
-
-        <article class="card">
-          <svg class="card__glyph" aria-hidden="true"><use href="#mHouse"/></svg>
-          <span class="card__bullet"></span>
-          <h3>Über 18 Jahre Erfahrung</h3>
-          <p>Viele Jahre Erfahrung und unterschiedlichste Projekte helfen uns, für jede Situation eine passende Lösung zu finden.</p>
-        </article>
-
-        <article class="card">
-          <svg class="card__glyph" aria-hidden="true"><use href="#mHouse"/></svg>
-          <span class="card__bullet"></span>
-          <h3>Klare Absprachen</h3>
-          <p>Wir sprechen offen über Möglichkeiten, Aufwand und die nächsten Schritte – damit Sie wissen, woran Sie sind.</p>
-        </article>
-
-        <article class="card">
-          <svg class="card__glyph" aria-hidden="true"><use href="#mHouse"/></svg>
-          <span class="card__bullet"></span>
-          <h3>Zuverlässige Arbeit</h3>
-          <p>Wir behandeln jedes Projekt mit der gleichen Sorgfalt – egal ob kleine Reparatur oder größere Renovierung.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== Referenzen / Galerie ===== -->
   <section class="gallery" id="referenzen">
     <h2>Unsere neuesten Projekte</h2>
@@ -235,12 +197,24 @@
       </div>
       <div class="gallery__stills">
         <!-- GALERIE:START — wird von "node fotos.js" erzeugt, nicht von Hand bearbeiten -->
-        <img src="assets/gallery/gallery-1.jpg" alt="Rohbau eines Wohnhauses mit fertiger Innentreppe" loading="lazy">
-        <img src="assets/gallery/gallery-2.jpg" alt="Neu gestalteter Innenhof mit Natursteinboden" loading="lazy">
-        <img src="assets/gallery/gallery-3.jpg" alt="Altbauzimmer während der Entkernung" loading="lazy">
-        <img src="assets/gallery/gallery-4.jpg" alt="Wohnraum vor und nach der Renovierung" loading="lazy">
-        <img src="assets/gallery/gallery-5.jpg" alt="Badezimmer vor und nach der Sanierung" loading="lazy">
-        <img src="assets/gallery/gallery-6.jpg" alt="Fertig verputzter Flur mit neuem Bodenbelag" loading="lazy">
+        <button type="button" class="gallery__item" data-full="assets/gallery/gallery-1-full.jpg" data-alt="Rohbau eines Wohnhauses mit fertiger Innentreppe" aria-label="Bild 1 von 6 vergrößern: Rohbau eines Wohnhauses mit fertiger Innentreppe">
+          <img src="assets/gallery/gallery-1.jpg" alt="Rohbau eines Wohnhauses mit fertiger Innentreppe" loading="lazy">
+        </button>
+        <button type="button" class="gallery__item" data-full="assets/gallery/gallery-2-full.jpg" data-alt="Neu gestalteter Innenhof mit Natursteinboden" aria-label="Bild 2 von 6 vergrößern: Neu gestalteter Innenhof mit Natursteinboden">
+          <img src="assets/gallery/gallery-2.jpg" alt="Neu gestalteter Innenhof mit Natursteinboden" loading="lazy">
+        </button>
+        <button type="button" class="gallery__item" data-full="assets/gallery/gallery-3-full.jpg" data-alt="Altbauzimmer während der Entkernung" aria-label="Bild 3 von 6 vergrößern: Altbauzimmer während der Entkernung">
+          <img src="assets/gallery/gallery-3.jpg" alt="Altbauzimmer während der Entkernung" loading="lazy">
+        </button>
+        <button type="button" class="gallery__item" data-full="assets/gallery/gallery-4-full.jpg" data-alt="Wohnraum vor und nach der Renovierung" aria-label="Bild 4 von 6 vergrößern: Wohnraum vor und nach der Renovierung">
+          <img src="assets/gallery/gallery-4.jpg" alt="Wohnraum vor und nach der Renovierung" loading="lazy">
+        </button>
+        <button type="button" class="gallery__item" data-full="assets/gallery/gallery-5-full.jpg" data-alt="Badezimmer vor und nach der Sanierung" aria-label="Bild 5 von 6 vergrößern: Badezimmer vor und nach der Sanierung">
+          <img src="assets/gallery/gallery-5.jpg" alt="Badezimmer vor und nach der Sanierung" loading="lazy">
+        </button>
+        <button type="button" class="gallery__item" data-full="assets/gallery/gallery-6-full.jpg" data-alt="Fertig verputzter Flur mit neuem Bodenbelag" aria-label="Bild 6 von 6 vergrößern: Fertig verputzter Flur mit neuem Bodenbelag">
+          <img src="assets/gallery/gallery-6.jpg" alt="Fertig verputzter Flur mit neuem Bodenbelag" loading="lazy">
+        </button>
         <!-- GALERIE:ENDE -->
       </div>
     </div>
@@ -385,6 +359,35 @@
     </div>
   </div>
 </footer>
+
+<!-- ===== Bildergalerie (Lightbox) ===== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Projektfotos" hidden>
+  <button type="button" class="lightbox__close" data-lb="close" aria-label="Schließen">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M6 6l12 12M18 6L6 18"/>
+    </svg>
+  </button>
+
+  <button type="button" class="lightbox__nav lightbox__nav--prev" data-lb="prev" aria-label="Vorheriges Bild">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 5l-7 7 7 7"/>
+    </svg>
+  </button>
+
+  <figure class="lightbox__stage">
+    <img class="lightbox__img" id="lightboxImg" src="" alt="">
+    <figcaption class="lightbox__caption">
+      <span class="lightbox__counter" id="lightboxCounter"></span>
+      <span class="lightbox__text" id="lightboxText"></span>
+    </figcaption>
+  </figure>
+
+  <button type="button" class="lightbox__nav lightbox__nav--next" data-lb="next" aria-label="Nächstes Bild">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 5l7 7-7 7"/>
+    </svg>
+  </button>
+</div>
 
 <script src="script.js"></script>
 </body>
