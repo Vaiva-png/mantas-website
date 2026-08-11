@@ -79,7 +79,7 @@ body {
   font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img, video, svg { max-width: 100%; }
@@ -149,11 +149,21 @@ h1, h2, h3 { font-weight: 600; margin: 0; }
 /* ---------- Header / nav ------------------------------------------------- */
 
 .masthead {
-  position: absolute; inset-inline: 0; z-index: 20;
+  position: sticky; top: 0; z-index: 20;
   padding-inline: var(--pad);
+  /* pulled back over the hero so the photo still starts at the very top */
+  margin-bottom: -100px;
+  transition: background .25s ease, box-shadow .25s ease;
+}
+/* once the page scrolls, the bar needs its own background to stay readable */
+.masthead--scrolled {
+  background: rgba(28,25,26,.94);
+  box-shadow: 0 1px 0 rgba(255,255,255,.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 /* subpages have no hero to sit on top of */
-.masthead--solid { position: relative; background: var(--ink); }
+.masthead--solid { background: var(--ink); margin-bottom: 0; }
 .masthead__inner {
   max-width: var(--maxw); margin-inline: auto;
   display: flex; align-items: center; gap: 18px;
@@ -674,7 +684,7 @@ a.contact__value:hover { color: var(--orange); }
   .topbar__inner { justify-content: center; gap: 8px 20px; font-size: 12px; }
 
   /* nav collapses into a panel */
-  .masthead { position: relative; background: var(--ink); }
+  .masthead { background: var(--ink); margin-bottom: 0; }
   .masthead__inner { height: 84px; }
   .nav-toggle { display: flex; margin-left: auto; }
   .nav {
@@ -729,8 +739,9 @@ a.contact__value:hover { color: var(--orange); }
 
 /* --- phone ---------------------------------------------------------------*/
 @media (max-width: 620px) {
-  .topbar { font-size: 11.5px; padding-block: 10px; }
-  .topbar__inner { flex-direction: column; gap: 4px; text-align: center; }
+  /* stacked over three lines it just crowds the logo — the same details
+     are in the contact section and the Impressum */
+  .topbar { display: none; }
 
   .logo img { height: 50px; }
 

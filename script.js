@@ -37,6 +37,16 @@
     mq.addEventListener ? mq.addEventListener('change', onChange) : mq.addListener(onChange);
   }
 
+  /* ---- sticky header: give it a background once it leaves the hero ------ */
+  var masthead = document.querySelector('.masthead');
+  if (masthead && !masthead.classList.contains('masthead--solid')) {
+    var syncHeader = function () {
+      masthead.classList.toggle('masthead--scrolled', window.scrollY > 30);
+    };
+    syncHeader();
+    window.addEventListener('scroll', syncHeader, { passive: true });
+  }
+
   /* ---- decorative house field in the footer ----------------------------- */
   var field = document.getElementById('footerPattern');
   if (field) {
