@@ -17,3 +17,11 @@ neue-fotos/*
 
 # Build artefacts / archives
 *.zip
+
+# Secrets — NEVER commit these. The repo is public.
+.env
+.env.*
+!.env.example
+
+# Netlify CLI local state
+.netlify/
