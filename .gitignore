@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+._*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Node (none used, but keeps things clean if tooling is ever added)
+node_modules/
+npm-debug.log*
+
+# Drop-folder for new photos — the processed versions live in assets/gallery/
+neue-fotos/*
+!neue-fotos/.gitkeep
+
+# Build artefacts / archives
+*.zip
