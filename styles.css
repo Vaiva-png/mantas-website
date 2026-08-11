@@ -498,23 +498,23 @@ h1, h2, h3 { font-weight: 600; margin: 0; }
   display: flex; flex-direction: column; justify-content: center;
 }
 .contact__info h2 {
-  font-size: clamp(27px, 3.2vw, 36px); line-height: 1.2; margin-bottom: 20px;
-  max-width: 460px;
+  font-size: clamp(31px, 3.9vw, 46px); line-height: 1.15; margin-bottom: 24px;
+  max-width: 540px;
 }
 .contact__info h2 em { font-style: normal; color: var(--orange); }
 .contact__info > p {
-  font-size: 15.5px; line-height: 1.7; color: var(--ink-soft);
-  margin: 0 0 36px; max-width: 420px;
+  font-size: 17.5px; line-height: 1.65; color: var(--ink-soft);
+  margin: 0 0 40px; max-width: 480px;
 }
-.contact__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
-.contact__list li { display: flex; align-items: center; gap: 14px; }
+.contact__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 24px; }
+.contact__list li { display: flex; align-items: center; gap: 16px; }
 .contact__icon {
-  width: 40px; height: 40px; border-radius: 50%; background: var(--gold);
+  width: 46px; height: 46px; border-radius: 50%; background: var(--gold);
   display: grid; place-items: center; color: var(--ink); flex-shrink: 0;
 }
-.contact__icon svg { width: 18px; height: 18px; }
-.contact__label { display: block; font-size: 12.5px; color: var(--ink-muted); }
-.contact__value { display: block; font-size: 15px; font-weight: 600; color: var(--ink); }
+.contact__icon svg { width: 21px; height: 21px; }
+.contact__label { display: block; font-size: 13.5px; color: var(--ink-muted); }
+.contact__value { display: block; font-size: 17.5px; font-weight: 600; color: var(--ink); }
 a.contact__value:hover { color: var(--orange); }
 
 .contact__form {
@@ -623,10 +623,6 @@ a.contact__value:hover { color: var(--orange); }
 }
 .footer__nav a:hover { color: var(--gold); }
 
-.footer__contact { color: rgba(255,255,255,.62); font-size: 14px; line-height: 1.9; }
-.footer__contact a { color: inherit; }
-.footer__contact a:hover { color: var(--gold); }
-
 /* Impressum */
 .footer__impressum {
   padding-top: 34px;
@@ -652,15 +648,6 @@ a.contact__value:hover { color: var(--orange); }
 .footer__legal { display: flex; gap: 18px; flex-wrap: wrap; }
 .footer__legal a { color: rgba(255,255,255,.62); }
 .footer__legal a:hover { color: var(--gold); }
-
-.footer__social { display: flex; gap: 10px; }
-.footer__social a {
-  width: 30px; height: 30px; border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.3);
-  display: grid; place-items: center; color: rgba(255,255,255,.65);
-}
-.footer__social a:hover { border-color: var(--gold); color: var(--gold); }
-.footer__social svg { width: 14px; height: 14px; }
 
 /* ==========================================================================
    Breakpoints
@@ -777,7 +764,6 @@ a.contact__value:hover { color: var(--orange); }
 @media (hover: none), (max-width: 980px) {
   .text-link,
   .footer__nav a,
-  .footer__contact a,
   .footer__impressum a,
   .footer__legal a,
   .consent a {
