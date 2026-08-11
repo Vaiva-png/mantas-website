@@ -1,0 +1,42 @@
+# Netlify-Konfiguration
+#
+# Ohne diese Datei würde Netlify das GANZE Repository veröffentlichen —
+# also auch brand/ (Markenhandbuch, Visitenkarte), HANDOFF.md, README.md
+# und die Werkzeug-Skripte. Alles davon wäre öffentlich abrufbar.
+#
+# build.sh stellt stattdessen einen sauberen dist/-Ordner zusammen.
+
+[build]
+  command = "bash ./build.sh"
+  publish = "dist"
+
+# Sicherheits-Header für alle Seiten
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+
+# Schriftarten und Bilder dürfen lange zwischengespeichert werden
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Saubere Adressen ohne .html
+[[redirects]]
+  from = "/datenschutz"
+  to = "/datenschutz.html"
+  status = 200
+
+[[redirects]]
+  from = "/impressum"
+  to = "/#impressum"
+  status = 301

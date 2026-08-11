@@ -33,16 +33,10 @@ else
 fi
 
 # --- dist/ zusammenstellen ---------------------------------------------------
-# Nur was wirklich öffentlich sein soll. Bewusst NICHT dabei:
-#   dev.js, fotos.js, neue-fotos/, brand/, README.md, HANDOFF.md, .env, kontakt.php
+# Gleiches Skript wie beim automatischen Deploy (netlify.toml), damit manueller
+# und automatischer Deploy nicht auseinanderlaufen können.
 echo "  → dist/ wird gebaut …"
-rm -rf dist
-mkdir -p dist
-cp index.html datenschutz.html danke.html styles.css script.js dist/
-cp -R assets dist/
-find dist -name '.DS_Store' -delete 2>/dev/null || true
-
-echo "     $(find dist -type f | wc -l | tr -d ' ') Dateien, $(du -sh dist | cut -f1)"
+bash ./build.sh
 
 # --- Hinweis zum Formular ----------------------------------------------------
 if grep -q 'action="kontakt.php"' index.html; then
