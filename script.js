@@ -67,23 +67,47 @@
 
   if (box && items.length) {
     var img      = document.getElementById('lightboxImg');
+    var vid      = document.getElementById('lightboxVideo');
     var counter  = document.getElementById('lightboxCounter');
     var text     = document.getElementById('lightboxText');
     var current  = 0;
     var opener   = null;   /* element to restore focus to on close */
 
+    function stopVideo() {
+      if (!vid) return;
+      vid.pause();
+      vid.removeAttribute('src');
+      vid.load();          /* drops the buffered data */
+    }
+
     function show(i) {
       current = (i + items.length) % items.length;   /* wraps around */
       var el = items[current];
-      img.src = el.dataset.full;
-      img.alt = el.dataset.alt || '';
+      var isVideo = el.dataset.type === 'video';
+
+      stopVideo();
+
+      if (isVideo) {
+        img.hidden = true;
+        vid.hidden = false;
+        vid.src = el.dataset.full;
+        vid.setAttribute('aria-label', el.dataset.alt || '');
+        var p = vid.play();
+        if (p && p.catch) p.catch(function () { /* autoplay with sound may be blocked */ });
+      } else {
+        vid.hidden = true;
+        img.hidden = false;
+        img.src = el.dataset.full;
+        img.alt = el.dataset.alt || '';
+      }
+
       text.textContent = el.dataset.alt || '';
       counter.textContent = (current + 1) + ' / ' + items.length;
 
-      /* warm up the neighbours so arrow-clicks feel instant */
+      /* warm up neighbouring images so arrow-clicks feel instant (skip videos) */
       [current + 1, current - 1].forEach(function (n) {
         var nb = items[(n + items.length) % items.length];
-        if (nb) { var pre = new Image(); pre.src = nb.dataset.full; }
+        if (nb && nb.dataset.type !== 'video') { var pre = new Image(); pre.src = nb.dataset.full; }
       });
     }
 
@@ -99,6 +123,7 @@
       box.hidden = true;
       document.body.style.overflow = '';
       img.src = '';
+      stopVideo();
       if (opener) opener.focus();
     }
 
@@ -121,9 +146,11 @@
 
     document.addEventListener('keydown', function (e) {
       if (box.hidden) return;
-      if (e.key === 'Escape')     { close(); }
-      if (e.key === 'ArrowRight') { e.preventDefault(); show(current + 1); }
-      if (e.key === 'ArrowLeft')  { e.preventDefault(); show(current - 1); }
+      if (e.key === 'Escape') { close(); }
+      /* let the arrows scrub when the player itself has focus */
+      var onPlayer = document.activeElement === vid;
+      if (e.key === 'ArrowRight' && !onPlayer) { e.preventDefault(); show(current + 1); }
+      if (e.key === 'ArrowLeft'  && !onPlayer) { e.preventDefault(); show(current - 1); }
       /* keep Tab inside the dialog */
       if (e.key === 'Tab') {
         var focusable = box.querySelectorAll('button');

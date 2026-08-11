@@ -98,7 +98,7 @@
         <img src="assets/about.jpg" alt="Handwerker beim Zuschnitt von Konstruktionsholz auf der Baustelle" width="1100" height="825" loading="lazy">
       </div>
       <div class="about__content">
-        <h2>Über 18 Jahre Erfahrung. Und immer persönlich.</h2>
+        <h2>Über 18 Jahre Erfahrung.<br><span class="about__h2-second">Und immer persönlich.</span></h2>
         <p>MANTAS Bauleistungen ist seit über 18 Jahren im Raum Usingen und Frankfurt tätig. In dieser Zeit haben wir viele unterschiedliche Projekte begleitet – von kleineren Reparaturen und Modernisierungen bis hin zu umfangreichen Renovierungs- und Bauarbeiten. Dabei ist uns eines besonders wichtig geblieben:</p>
         <p class="about__quote">Gute Arbeit beginnt mit Vertrauen.</p>
         <p>Deshalb setzen wir auf persönliche Beratung, klare Absprachen und eine zuverlässige Umsetzung. Wir hören zu, suchen gemeinsam nach der passenden Lösung und begleiten Ihr Projekt vom ersten Gespräch bis zum letzten Handgriff.</p>
@@ -188,10 +188,15 @@
   <section class="gallery" id="referenzen">
     <h2>Unsere neuesten Projekte</h2>
     <div class="gallery__grid">
-      <div class="gallery__reel">
+      <button type="button" class="gallery__reel gallery__item" data-type="video"
+              data-full="assets/projects.mp4" data-alt="Kurzes Video von einer laufenden Baustelle"
+              aria-label="Video abspielen: Kurzes Video von einer laufenden Baustelle">
         <video class="gallery__video" src="assets/projects.mp4" poster="assets/projects-poster.jpg"
-               autoplay loop muted playsinline preload="none" aria-label="Kurzes Video von einer laufenden Baustelle"></video>
-      </div>
+               autoplay loop muted playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
+        <span class="gallery__play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+        </span>
+      </button>
       <div class="gallery__stills">
         <!-- GALERIE:START — wird von "node fotos.js" erzeugt, nicht von Hand bearbeiten -->
         <button type="button" class="gallery__item" data-full="assets/gallery/gallery-1-full.jpg" data-alt="Rohbau eines Wohnhauses mit fertiger Innentreppe" aria-label="Bild 1 von 6 vergrößern: Rohbau eines Wohnhauses mit fertiger Innentreppe">
@@ -352,6 +357,7 @@
 
   <figure class="lightbox__stage">
     <img class="lightbox__img" id="lightboxImg" src="" alt="">
+    <video class="lightbox__video" id="lightboxVideo" controls playsinline preload="metadata" hidden></video>
     <figcaption class="lightbox__caption">
       <span class="lightbox__counter" id="lightboxCounter"></span>
       <span class="lightbox__text" id="lightboxText"></span>
