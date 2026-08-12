@@ -595,12 +595,6 @@ a.contact__value:hover { color: var(--orange); }
   margin: 0 0 18px;
 }
 
-.legal__note {
-  background: var(--bg-soft); border-left: 4px solid var(--gold);
-  padding: 20px 22px; margin: 0 0 40px;
-}
-.legal__note p { margin: 0; font-size: 14.5px; }
-
 /* ---------- Thank-you page ----------------------------------------------- */
 
 .thanks { padding: clamp(70px, 12vw, 130px) var(--pad); }
